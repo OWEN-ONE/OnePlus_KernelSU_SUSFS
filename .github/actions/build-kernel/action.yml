@@ -794,7 +794,11 @@ runs:
           if [[ "$url" == *"github.com"* ]]; then
               download_url="${url%.git}/archive/refs/heads/${branch}.tar.gz"
           elif [[ "$url" == *"gitlab.com"* ]]; then
-              download_url="${url%.git}/-/archive/${branch}/${repo_name}-${branch}.tar.gz"
+              if [[ "$url" == *"simonpunk/susfs4ksu"* ]]; then
+                  download_url="https://raw.githubusercontent.com/OWEN-ONE/OnePlus_KernelSU_SUSFS/main/mirror/${repo_name}-${branch}.tar.gz"
+              else
+                  download_url="${url%.git}/-/archive/${branch}/${repo_name}-${branch}.tar.gz"
+              fi
           else
               echo "::error::Unsupported host: $url"
               return 1
